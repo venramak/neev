@@ -1,0 +1,15 @@
+name = "neev-api"
+main = "src/index.ts"
+compatibility_date = "2026-10-01"
+
+# No observability logs: the draft route must not persist anything.
+[observability]
+enabled = false
+
+[ai]
+binding = "AI"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "neev"
+database_id = "REPLACE_AFTER_wrangler_d1_create"

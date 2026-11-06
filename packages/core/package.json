@@ -1,0 +1,2 @@
+{ "name": "@neev/core", "version": "0.1.0", "type": "module", "license": "AGPL-3.0-only",
+  "main": "src/index.ts", "types": "src/index.ts", "sideEffects": false }

@@ -1,0 +1,3 @@
+{ "name": "@neev/pilot", "private": true, "version": "0.1.0", "type": "module",
+  "scripts": { "build": "node build.mjs && vite build", "dev": "vite", "preview": "vite preview" },
+  "devDependencies": { "vite": "^7.0.0", "vite-plugin-pwa": "^1.0.0" } }

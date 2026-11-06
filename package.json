@@ -1,0 +1,23 @@
+{
+  "name": "neev",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Neev: see who holds you, and reach them. On-device, no accounts.",
+  "license": "AGPL-3.0-only",
+  "workspaces": [
+    "packages/*",
+    "apps/*",
+    "workers/*"
+  ],
+  "scripts": {
+    "typecheck": "tsc -p packages/core && tsc -p workers/api --noEmit",
+    "test": "vitest run",
+    "build": "npm run build -w @neev/pilot",
+    "check": "npm run typecheck && npm run test && npm run build"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.0",
+    "vitest": "^4.0.0"
+  },
+  "type": "module"
+}

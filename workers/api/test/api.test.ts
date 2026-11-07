@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseStruct, weekKey } from "../src/index";
+import { parseStruct, validKind, weekKey } from "../src/index";
 
 describe("structure-only draft payload", () => {
   const ok = { task: "draft", lang: "en", reason: "memory", people: [{ token: "{P1}", ring: "few" }] };
@@ -15,4 +15,9 @@ describe("structure-only draft payload", () => {
 
 describe("week key", () => {
   it("is the Monday of the week", () => expect(weekKey(new Date("2026-11-08T10:00:00Z"))).toBe("2026-11-02"));
+});
+
+describe("door counts", () => {
+  it.each(["door:e1", "door:p", "door:s07", "door:b-village", "door:m-launch-jan", "door:c", "audit"])("accepts %s", (k) => expect(validKind(k)).toBe(true));
+  it.each(["door:e9", "door:s7", "door:b-Village", "door:m-" + "x".repeat(30), "door:leela@example.com", "hello"])("refuses %s", (k) => expect(validKind(k)).toBe(false));
 });

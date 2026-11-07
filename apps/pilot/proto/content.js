@@ -11,7 +11,7 @@ window.NEEV = {
   patreonUrl: "https://www.patreon.com/", // CONFIRM
   supportUrl: "", // CONFIRM: one-time support page (Razorpay / UPI)
   // Episode release dates (ISO). Until a date passes, the app treats that episode as "coming".
-  releases: { 1: "2026-11-15", 2: "2026-11-22", 3: "2026-11-29", 4: "2026-12-06", 5: "2026-12-13" }, // CONFIRM
+  releases: { 1: "2027-01-08", 2: "2027-01-15", 3: "2027-01-22", 4: "2027-01-29", 5: "2027-02-05" }, // Fridays 7 pm IST; Parichay releases with Ep 1
 
   mantra: {
     hi: "Har mann bhatakta hai. Koi akela wapas nahi aata.",
@@ -23,7 +23,7 @@ window.NEEV = {
   /* Season 1. CONFIRM: titles and questions follow the latest drafts shared in Nov 2026. */
   episodes: [
     {
-      n: 1, title: "Main", book: "village",
+      n: 1, title: "Chaar Sau Chhe", book: "village",
       q: { hi: "Aap kitne logon se bane hain?", en: "How many people are you made of?" },
       act: {
         hi: "Us naam ko ek line bhejiye jo raat 2:40 baje sabse pehle yaad aaya: \"Bas yaad aaya. Kaise ho?\"",

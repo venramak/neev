@@ -5,7 +5,7 @@ let actions = r("p3-actions.js").trimEnd();
 if (!actions.endsWith("boot();")) throw new Error("p3-actions.js must end with boot();");
 actions = actions.slice(0, -7).replace('window.addEventListener("hashchange", route);', 'window.addEventListener("hashchange", function () { route(); });');
 const strip = (s) => { s = s.trimEnd(); return s.endsWith("boot();") ? s.slice(0, -7) : s; };
-const app = [r("p3-core.js"), r("p3-views.js"), actions, strip(r("p4-ext.js")), strip(r("p5-ext.js")), r("p6-audit.js")].join("\n");
+const app = [r("p3-core.js"), r("p3-views.js"), actions, strip(r("p4-ext.js")), strip(r("p5-ext.js")), strip(r("p6-audit.js")), r("p7-doors.js")].join("\n");
 const body = r("shell.html").replace("/*CONTENT*/", () => r("content.js")).replace("/*APP*/", () => app);
 const html = `<!doctype html>
 <html lang="en">

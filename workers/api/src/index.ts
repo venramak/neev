@@ -10,6 +10,9 @@ import { checkOutput, type StructPayload } from "@neev/core";
 export interface Env { DB: D1Database; AI: Ai }
 
 const KINDS = new Set(["line", "act", "audit"]);
+/** Which door an install came through: episode, Parichay, Short, book QR, email campaign, course. Counted once per install, never linked to anything. */
+export const DOOR = /^door:(e[1-5]|p|s\d{2}|b-[a-z]+|m-[a-z0-9-]{1,24}|c)$/;
+export const validKind = (k: string) => KINDS.has(k) || DOOR.test(k);
 const TASKS = new Set(["draft"]);
 const LANGS = new Set(["en", "hi"]);
 const REASONS = new Set(["share", "ask", "memory", "news", "occasion", "plan", "thanks", "mend", "hello"]);
@@ -60,7 +63,7 @@ export default {
     }
     if (url.pathname === "/api/chorus" && req.method === "POST") {
       const b = (await req.json().catch(() => null)) as { kind?: string } | null;
-      if (!b || !KINDS.has(b.kind ?? "")) return json({ error: "kind" }, 400);
+      if (!b || !validKind(b.kind ?? "")) return json({ error: "kind" }, 400);
       await env.DB.prepare("INSERT INTO chorus (week, kind, n) VALUES (?, ?, 1) ON CONFLICT(week, kind) DO UPDATE SET n = n + 1")
         .bind(weekKey(), b.kind).run();
       return json({ ok: true });

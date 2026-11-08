@@ -30,6 +30,18 @@
       if (k === KEY) idb(function (db) { db.transaction(STORE, "readwrite").objectStore(STORE).delete(KEY); });
     };
   } catch (e) {}
+  /* Inside an iframe on another site, the browser keeps this app's storage separate per site (and Safari may block it),
+     so a person's map could vanish. Offer the full app in its own tab, always visible. */
+  var framed = false;
+  try { framed = window.self !== window.top; } catch (e) { framed = true; }
+  if (framed) document.addEventListener("DOMContentLoaded", function () {
+    var a = document.createElement("a");
+    a.href = location.origin + "/" + location.hash; a.target = "_blank"; a.rel = "noopener";
+    a.textContent = "Open Neev full screen \u2197";
+    a.setAttribute("style", "position:fixed;top:8px;left:50%;transform:translateX(-50%);z-index:99;background:#f2a64a;color:#16130f;font:600 14px system-ui,sans-serif;padding:8px 14px;border-radius:999px;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.25)");
+    document.body.appendChild(a);
+  });
+  var gs = document.createElement("style"); gs.textContent = "#gatebar b{white-space:nowrap}"; document.head.appendChild(gs);
   if (!/[?&]bench\b/.test(location.search)) {
     var st = document.createElement("style");
     st.textContent = "#bench,[data-a=bench]{display:none!important}.stage{grid-template-columns:1fr!important;justify-items:center}";

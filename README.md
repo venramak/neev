@@ -33,9 +33,20 @@ Every episode, Short, book QR code and email gets its own short link on your own
 
 Printed QR codes live for years: always print your own domain, never a `vercel.app` or `pages.dev` address.
 
+## Share and embed
+
+- **Share:** the link carries a preview card (title, line, image) for WhatsApp, X and LinkedIn. Build with `SITE_URL=https://your-domain npm run build` so the preview image URL is absolute.
+- **Embed on a website:** prefer a button or QR code that opens the app in its own tab. Browsers keep an embedded app's storage separate per site (Safari may block it), so a person's map could be lost. If you do embed, the app shows an "Open Neev full screen" button:
+
+```html
+<iframe src="https://your-domain/1" title="Neev" style="width:100%;max-width:420px;height:780px;border:0;border-radius:16px" allow="clipboard-write"></iframe>
+<p><a href="https://your-domain/1" target="_blank" rel="noopener">Open Neev full screen</a></p>
+```
+
 ## Deploy on Vercel
 
-1. Import the GitHub repo in Vercel, set **Root Directory** to `apps/pilot`. `vercel.json` already sets install, build, output, the door rewrites and security headers.
+0. Fastest: `cd apps/pilot && npm run build && npx vercel deploy dist --prod` from your own computer (log in when asked).
+1. Or import the GitHub repo in Vercel, set **Root Directory** to `apps/pilot`. `vercel.json` already sets install, build, output, the door rewrites and security headers.
 2. Add your domain (for example `neev.twopointsingularity.com`) and make it the production domain.
 3. Use Pro before the public launch: the series and books make it commercial use, and Pro bills overages instead of pausing the site.
 4. Keep on-device AI models off Vercel (Hugging Face or R2).

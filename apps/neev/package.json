@@ -1,0 +1,3 @@
+{ "name": "@neev/app", "private": true, "version": "0.7.0", "type": "module",
+  "scripts": { "build": "node build.mjs" },
+  "devDependencies": { "esbuild": "*" } }
